@@ -1,0 +1,82 @@
+<section class="pagina">
+  <a routerLink="/os" class="voltar">← Voltar para a lista</a>
+
+  @if (carregando()) {
+    <p class="estado"><span class="spinner"></span> Carregando...</p>
+  } @else if (erro()) {
+    <p class="erro" role="alert">{{ erro() }}</p>
+  } @else if (os(); as ordem) {
+    <div class="cabecalho">
+      <div>
+        <h1>OS nº {{ ordem.id }}</h1>
+        <p class="data">Aberta em {{ ordem.dataAbertura | date: 'dd/MM/yyyy HH:mm' }}</p>
+      </div>
+
+      <div class="acoes">
+        <button
+          type="button"
+          class="principal"
+          (click)="gerarPdf('abrir')"
+          [disabled]="gerandoPdf()"
+        >
+          @if (gerandoPdf()) {
+            <span class="spinner branco"></span> Gerando...
+          } @else {
+            Abrir PDF
+          }
+        </button>
+        <button
+          type="button"
+          class="secundario"
+          (click)="gerarPdf('baixar')"
+          [disabled]="gerandoPdf()"
+        >
+          Baixar PDF
+        </button>
+      </div>
+    </div>
+
+    @if (erroPdf()) {
+      <p class="erro" role="alert">{{ erroPdf() }}</p>
+    }
+
+    <div class="bloco">
+      <h2>Cliente e veículo</h2>
+      <p>
+        <strong>Cliente:</strong> {{ ordem.nomeCliente }}<br />
+        <strong>Telefone:</strong> {{ ordem.telefone }}<br />
+        <strong>Placa:</strong> {{ ordem.placa }}
+      </p>
+    </div>
+
+    <div class="bloco">
+      <h2>Itens</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th class="num">Qtd</th>
+            <th class="num">Valor unit.</th>
+            <th class="num">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of ordem.itens; track $index) {
+            <tr>
+              <td>{{ item.tipo === 'PECA' ? 'Peça' : 'Serviço' }}</td>
+              <td>{{ item.descricao }}</td>
+              <td class="num">{{ item.quantidade }}</td>
+              <td class="num">{{ item.valorUnitario | currency: 'BRL' }}</td>
+              <td class="num">{{ item.subtotal | currency: 'BRL' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <p class="total">
+        Total: <strong>{{ ordem.valorTotal | currency: 'BRL' }}</strong>
+      </p>
+    </div>
+  }
+</section>
