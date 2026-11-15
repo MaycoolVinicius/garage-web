@@ -1,0 +1,48 @@
+<section class="pagina">
+  <div class="barra">
+    <h1>Ordens de serviço</h1>
+    <a routerLink="/os/nova" class="botao">Nova OS</a>
+  </div>
+
+  <input
+    type="search"
+    class="busca"
+    [formControl]="busca"
+    placeholder="Buscar por placa, nome ou telefone"
+  />
+
+  @if (erro()) {
+    <p class="erro" role="alert">{{ erro() }}</p>
+  }
+
+  @if (carregando()) {
+    <p class="estado"><span class="spinner"></span> Carregando...</p>
+  } @else if (ordens().length === 0 && !erro()) {
+    <p class="estado">Nenhuma ordem de serviço encontrada.</p>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>Nº</th>
+          <th>Cliente</th>
+          <th>Placa</th>
+          <th>Data</th>
+          <th class="num">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (os of ordens(); track os.id) {
+          <tr>
+            <td>
+              <a [routerLink]="['/os', os.id]">{{ os.id }}</a>
+            </td>
+            <td>{{ os.nomeCliente }}</td>
+            <td>{{ os.placa }}</td>
+            <td>{{ os.dataAbertura | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td class="num">{{ os.valorTotal | currency: 'BRL' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>

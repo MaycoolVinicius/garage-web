@@ -1,0 +1,32 @@
+<main class="login">
+  <form [formGroup]="form" (ngSubmit)="entrar()">
+    <h1>Garage</h1>
+    <p class="subtitulo">Acesso ao sistema de ordens de serviço</p>
+
+    <label>
+      Usuário
+      <input formControlName="username" autocomplete="username" />
+    </label>
+
+    <label>
+      Senha
+      <input type="password" formControlName="senha" autocomplete="current-password" />
+    </label>
+
+    @if (erro()) {
+      <p class="erro" role="alert">{{ erro() }}</p>
+    }
+
+    <button type="submit" [disabled]="form.invalid || carregando()">
+      @if (carregando()) {
+        <span class="spinner"></span> Entrando...
+      } @else {
+        Entrar
+      }
+    </button>
+
+    @if (carregando()) {
+      <p class="aviso">Na primeira vez do dia o servidor pode levar até 1 minuto para acordar.</p>
+    }
+  </form>
+</main>

@@ -1,0 +1,155 @@
+.voltar {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #1f4e79;
+  text-decoration: none;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 1.3rem;
+}
+
+form {
+  display: grid;
+  gap: 16px;
+}
+
+fieldset {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #e4e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
+
+legend {
+  padding: 0 6px;
+  font-weight: 600;
+}
+
+label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #cbd2d9;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #b42318;
+}
+
+.placa {
+  text-transform: uppercase;
+}
+
+.duas-colunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 110px 1fr 80px 130px 40px;
+  gap: 8px;
+  align-items: end;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #e4e7eb;
+}
+
+.remover {
+  height: 40px;
+  border: 1px solid #cbd2d9;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.remover:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.secundario {
+  justify-self: start;
+  padding: 8px 12px;
+  border: 1px solid #1f4e79;
+  border-radius: 6px;
+  background: #fff;
+  color: #1f4e79;
+  cursor: pointer;
+}
+
+.rodape {
+  display: grid;
+  gap: 12px;
+  justify-items: end;
+}
+
+.total {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.erro {
+  margin: 0;
+  color: #b42318;
+}
+
+.principal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 6px;
+  background: #1f4e79;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.principal:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(255 255 255 / 40%);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .item {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .descricao {
+    grid-column: 1 / -1;
+  }
+
+  .duas-colunas {
+    grid-template-columns: 1fr;
+  }
+}
