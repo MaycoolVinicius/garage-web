@@ -127,3 +127,7 @@ button:disabled {
     transform: rotate(360deg);
   }
 }
+.obs {
+  margin: 0;
+  white-space: pre-wrap;
+}

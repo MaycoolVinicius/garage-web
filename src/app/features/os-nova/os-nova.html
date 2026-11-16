@@ -16,6 +16,26 @@
           Telefone
           <input formControlName="telefone" inputmode="tel" autocomplete="off" />
         </label>
+        <div class="duas-colunas">
+          <label>
+            Modelo do veículo
+            <input formControlName="modelo" autocomplete="off" />
+          </label>
+
+          <label>
+            KM
+            <input type="number" formControlName="km" min="0" step="1" inputmode="numeric" />
+          </label>
+        </div>
+        <fieldset>
+          <legend>Observações</legend>
+          <textarea
+            formControlName="observacoes"
+            rows="3"
+            maxlength="1000"
+            placeholder="Ex.: cliente relatou barulho ao frear"
+          ></textarea>
+        </fieldset>
 
         <label>
           Placa

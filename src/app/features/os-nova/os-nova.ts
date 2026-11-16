@@ -14,6 +14,10 @@ import { startWith } from 'rxjs';
 import { OrdemServicoRequest, TipoItem } from '../../core/models';
 import { OsService } from '../../core/os.service';
 
+function inteiro(controle: AbstractControl): ValidationErrors | null {
+  const valor = controle.value;
+  return valor === null || valor === '' || Number.isInteger(valor) ? null : { inteiro: true };
+}
 function semBranco(controle: AbstractControl): ValidationErrors | null {
   const valor = controle.value;
   return typeof valor === 'string' && valor.trim() === '' ? { branco: true } : null;
@@ -38,6 +42,13 @@ export class OsNova {
     nomeCliente: ['', [Validators.required, semBranco, Validators.maxLength(120)]],
     telefone: ['', [Validators.required, semBranco, Validators.maxLength(20)]],
     placa: ['', [Validators.required, semBranco, Validators.maxLength(10)]],
+    modelo: ['', [Validators.maxLength(80)]],
+    km: this.fb.control<number | null>(null, [
+      Validators.min(0),
+      Validators.max(9_999_999),
+      inteiro,
+    ]),
+    observacoes: ['', [Validators.maxLength(1000)]],
     itens: this.fb.array([this.novoItem()], Validators.minLength(1)),
   });
 
@@ -73,6 +84,9 @@ export class OsNova {
       nomeCliente: valores.nomeCliente.trim(),
       telefone: valores.telefone.trim(),
       placa: valores.placa.trim(),
+      modelo: valores.modelo.trim() || null,
+      km: valores.km,
+      observacoes: valores.observacoes.trim() || null,
       itens: valores.itens.map((i) => ({
         tipo: i.tipo,
         descricao: i.descricao.trim(),

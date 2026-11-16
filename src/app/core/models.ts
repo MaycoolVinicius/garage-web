@@ -1,4 +1,4 @@
-export type TipoItem = "PECA" | "SERVICO";
+export type TipoItem = 'PECA' | 'SERVICO';
 
 export interface TokenResponse {
   token: string;
@@ -16,6 +16,9 @@ export interface OrdemServicoRequest {
   nomeCliente: string;
   telefone: string;
   placa: string;
+  modelo: string | null;
+  km: number | null;
+  observacoes: string | null;
   itens: ItemRequest[];
 }
 
@@ -28,6 +31,9 @@ export interface OrdemServicoResponse {
   nomeCliente: string;
   telefone: string;
   placa: string;
+  modelo: string | null;
+  km: number | null;
+  observacoes: string | null;
   dataAbertura: string;
   itens: ItemResponse[];
   valorTotal: number;

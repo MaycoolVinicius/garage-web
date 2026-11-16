@@ -37,15 +37,18 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
   padding: 10px;
   border: 1px solid #cbd2d9;
   border-radius: 6px;
   font-size: 1rem;
+  font-family: inherit;
 }
 
 input.ng-invalid.ng-touched,
-select.ng-invalid.ng-touched {
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
   border-color: #b42318;
 }
 

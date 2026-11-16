@@ -46,9 +46,20 @@
         <strong>Cliente:</strong> {{ ordem.nomeCliente }}<br />
         <strong>Telefone:</strong> {{ ordem.telefone }}<br />
         <strong>Placa:</strong> {{ ordem.placa }}
+        @if (ordem.modelo) {
+          <br /><strong>Modelo:</strong> {{ ordem.modelo }}
+        }
+        @if (ordem.km != null) {
+          <br /><strong>KM:</strong> {{ ordem.km }}
+        }
       </p>
     </div>
-
+    @if (ordem.observacoes) {
+      <div class="bloco">
+        <h2>Observações</h2>
+        <p class="obs">{{ ordem.observacoes }}</p>
+      </div>
+    }
     <div class="bloco">
       <h2>Itens</h2>
       <table>
