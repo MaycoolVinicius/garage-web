@@ -6,10 +6,10 @@ import { OsNova } from './features/os-nova/os-nova';
 import { OsDetalhe } from './features/os-detalhe/os-detalhe';
 
 export const routes: Routes = [
-  { path: 'os/:id', component: OsDetalhe, canActivate: [authGuard] },
-  { path: 'os/nova', component: OsNova, canActivate: [authGuard] },
   { path: 'login', component: Login },
   { path: 'os', component: OsLista, canActivate: [authGuard] },
+  { path: 'os/nova', component: OsNova, canActivate: [authGuard] },
+  { path: 'os/:id', component: OsDetalhe, canActivate: [authGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'os' },
   { path: '**', redirectTo: 'os' },
 ];
