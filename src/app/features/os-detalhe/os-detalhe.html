@@ -44,7 +44,7 @@
       <h2>Cliente e veículo</h2>
       <p>
         <strong>Cliente:</strong> {{ ordem.nomeCliente }}<br />
-        <strong>Telefone:</strong> {{ ordem.telefone }}<br />
+        <strong>Telefone:</strong> {{ ordem.telefone | telefone }}<br />
         <strong>Placa:</strong> {{ ordem.placa }}
         @if (ordem.modelo) {
           <br /><strong>Modelo:</strong> {{ ordem.modelo }}

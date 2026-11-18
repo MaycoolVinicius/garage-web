@@ -14,7 +14,13 @@
       <div class="duas-colunas">
         <label>
           Telefone
-          <input formControlName="telefone" inputmode="tel" autocomplete="off" />
+          <input
+            formControlName="telefone"
+            inputmode="tel"
+            autocomplete="off"
+            placeholder="(00) 00000-0000"
+            (input)="mascararTelefone()"
+          />
         </label>
         <div class="duas-colunas">
           <label>

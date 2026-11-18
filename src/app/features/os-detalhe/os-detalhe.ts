@@ -4,10 +4,11 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { OrdemServicoResponse } from '../../core/models';
 import { OsService } from '../../core/os.service';
+import { TelefonePipe } from '../../core/telefone.pipe';
 
 @Component({
   selector: 'app-os-detalhe',
-  imports: [RouterLink, CurrencyPipe, DatePipe],
+  imports: [RouterLink, CurrencyPipe, DatePipe, TelefonePipe],
   templateUrl: './os-detalhe.html',
   styleUrl: './os-detalhe.css',
 })

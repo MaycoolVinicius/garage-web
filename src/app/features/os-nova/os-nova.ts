@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
+import { formatarTelefone } from '../../core/formatos';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
@@ -40,7 +41,7 @@ export class OsNova {
 
   form = this.fb.nonNullable.group({
     nomeCliente: ['', [Validators.required, semBranco, Validators.maxLength(120)]],
-    telefone: ['', [Validators.required, semBranco, Validators.maxLength(20)]],
+    telefone: ['', [Validators.required, Validators.pattern(/^(?:\D*\d){10,11}\D*$/)]],
     placa: ['', [Validators.required, semBranco, Validators.maxLength(10)]],
     modelo: ['', [Validators.maxLength(80)]],
     km: this.fb.control<number | null>(null, [
@@ -127,5 +128,10 @@ export class OsNova {
       return soma + preco * qtd;
     }, 0);
     return centavos / 100;
+  }
+
+  mascararTelefone(): void {
+    const controle = this.form.controls.telefone;
+    controle.setValue(formatarTelefone(controle.value), { emitEvent: false });
   }
 }
