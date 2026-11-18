@@ -4,8 +4,10 @@ import { Login } from './features/login/login';
 import { OsLista } from './features/os-lista/os-lista';
 import { OsNova } from './features/os-nova/os-nova';
 import { OsDetalhe } from './features/os-detalhe/os-detalhe';
+import { Configuracoes } from './features/configuracoes/configuracoes';
 
 export const routes: Routes = [
+  { path: 'configuracoes', component: Configuracoes, canActivate: [authGuard] },
   { path: 'login', component: Login },
   { path: 'os', component: OsLista, canActivate: [authGuard] },
   { path: 'os/nova', component: OsNova, canActivate: [authGuard] },

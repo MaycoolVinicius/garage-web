@@ -46,3 +46,22 @@ export interface OrdemServicoResumo {
   dataAbertura: string;
   valorTotal: number;
 }
+
+export interface ConfiguracaoOficina {
+  nome: string;
+  razaoSocial: string | null;
+  cnpj: string | null;
+  endereco: string | null;
+  telefone: string | null;
+  email: string | null;
+  logo: string | null;
+}
+
+export interface ConfiguracaoRequest {
+  nome: string;
+  razaoSocial: string;
+  cnpj: string;
+  endereco: string;
+  telefone: string;
+  email: string;
+}

@@ -1,7 +1,10 @@
 @if (auth.logado()) {
   <header class="topo">
-    <a routerLink="/os" class="marca">Centro Automotivo Paraná</a>
-    <button type="button" (click)="auth.logout()">Sair</button>
+    <a routerLink="/os" class="marca">{{ configuracao.nome() || 'Sistema de OS' }}</a>
+    <nav class="acoes-topo">
+      <a routerLink="/configuracoes" class="link-topo">Configurações</a>
+      <button type="button" (click)="auth.logout()">Sair</button>
+    </nav>
   </header>
 }
 

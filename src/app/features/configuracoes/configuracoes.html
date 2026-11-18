@@ -1,0 +1,106 @@
+<section class="pagina">
+  <a routerLink="/os" class="voltar">← Voltar para a lista</a>
+  <h1>Configurações da oficina</h1>
+
+  @if (carregando()) {
+    <p class="estado"><span class="spinner"></span> Carregando...</p>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="salvar()">
+      <fieldset>
+        <legend>Dados da oficina</legend>
+
+        <label>
+          Nome da oficina
+          <input formControlName="nome" autocomplete="off" />
+        </label>
+
+        <label>
+          Razão social
+          <input formControlName="razaoSocial" autocomplete="off" />
+        </label>
+
+        <div class="duas-colunas">
+          <label>
+            CNPJ
+            <input formControlName="cnpj" inputmode="numeric" placeholder="00.000.000/0000-00" />
+          </label>
+
+          <label>
+            Telefone
+            <input formControlName="telefone" inputmode="tel" autocomplete="off" />
+          </label>
+        </div>
+
+        <label>
+          Endereço
+          <input formControlName="endereco" autocomplete="off" />
+        </label>
+
+        <label>
+          E-mail
+          <input type="email" formControlName="email" autocomplete="off" />
+        </label>
+      </fieldset>
+
+      @if (erro()) {
+        <p class="erro" role="alert">{{ erro() }}</p>
+      }
+      @if (sucesso()) {
+        <p class="sucesso" role="status">{{ sucesso() }}</p>
+      }
+
+      <button type="submit" class="principal" [disabled]="salvando()">
+        @if (salvando()) {
+          <span class="spinner branco"></span> Salvando...
+        } @else {
+          Salvar dados
+        }
+      </button>
+    </form>
+
+    <fieldset class="logo-bloco">
+      <legend>Logo</legend>
+
+      <div class="previa">
+        @if (logo()) {
+          <img [src]="logo()" alt="Logo da oficina" />
+        } @else {
+          <span>Nenhum logo enviado</span>
+        }
+      </div>
+
+      <p class="ajuda">PNG ou JPEG, até 500 KB. Aparece no cabeçalho do PDF.</p>
+
+      <div class="acoes">
+        <label class="botao-arquivo" [class.desabilitado]="enviandoLogo()">
+          {{ logo() ? 'Trocar logo' : 'Enviar logo' }}
+          <input
+            type="file"
+            accept="image/png,image/jpeg"
+            (change)="escolherLogo($event)"
+            [disabled]="enviandoLogo()"
+            hidden
+          />
+        </label>
+
+        @if (logo()) {
+          <button
+            type="button"
+            class="secundario"
+            (click)="removerLogo()"
+            [disabled]="enviandoLogo()"
+          >
+            Remover logo
+          </button>
+        }
+      </div>
+
+      @if (enviandoLogo()) {
+        <p class="estado"><span class="spinner"></span> Enviando...</p>
+      }
+      @if (erroLogo()) {
+        <p class="erro" role="alert">{{ erroLogo() }}</p>
+      }
+    </fieldset>
+  }
+</section>
