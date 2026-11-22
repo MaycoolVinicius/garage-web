@@ -1,59 +1,58 @@
-# OficinaWeb
+# Garage Web
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.7.
+Front-end em Angular do sistema **Garage**, para emitir e consultar Ordens de
+Serviço de oficinas. A API e a explicação completa do projeto, com capturas de
+tela, estão em [garage](https://github.com/MaycoolVinicius/garage).
 
-## Development server
+> Todos os dados de demonstração são **fictícios**.
 
-To start a local development server, run:
+## Funcionalidades
 
-```bash
-ng serve
-```
+- Login com JWT (rota protegida por guard e interceptor)
+- Lista de OS com busca por placa, nome ou telefone
+- Nova OS com itens dinâmicos de peças e serviços e total em tempo real
+- Detalhe da OS e abertura/download do PDF
+- Configurações da oficina: dados, CNPJ e logo
+- Máscara de telefone e formatação de valores em pt-BR
+- Indicador de carregamento para a API "acordando" (plano gratuito de hospedagem)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Tecnologias
 
-## Code scaffolding
+- **Angular 22** (componentes standalone, signals, formulários reativos)
+- **TypeScript**
+- Roteamento com guard de autenticação e interceptor HTTP funcional
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Como rodar
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Requisitos: Node.js e npm, e a API rodando em `http://localhost:8080`
+(veja o README do back-end).
 
 ```bash
-ng build
+npm install
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+O app abre em `http://localhost:4200`. O `npm start` usa um proxy
+(`proxy.conf.json`) que encaminha `/api` para a API local, então não há
+problema de CORS no desenvolvimento.
 
-## Running unit tests
+Para entrar na demonstração, use o usuário definido em `ADMIN_USERNAME` ao
+subir a API com o perfil `demo`.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Estrutura
 
-```bash
-ng test
+```
+src/app/
+├── core/       # serviços, modelos, interceptor, guard, pipes e utilitários
+└── features/   # telas: login, os-lista, os-nova, os-detalhe, configuracoes
 ```
 
-## Running end-to-end tests
+## Decisões
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **O total é sempre calculado pelo servidor.** A tela só mostra uma prévia;
+  o valor que vale vem da API.
+- **PDF autenticado:** o arquivo é baixado como blob com o token, porque uma
+  tag `<img>` ou um link simples não conseguem enviar o cabeçalho
+  `Authorization`.
+- O token fica no `localStorage`, um compromisso aceito para este projeto
+  (o risco é XSS; cookies `HttpOnly` seriam a alternativa mais forte).
