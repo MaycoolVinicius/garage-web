@@ -6,6 +6,15 @@ tela, estão em [garage](https://github.com/MaycoolVinicius/garage).
 
 > Todos os dados de demonstração são **fictícios**.
 
+## Demo
+
+- App: https://SUA-URL.vercel.app
+- Usuário: `demo` · Senha: `SENHA-DO-DEMO`
+
+> A API roda em plano gratuito e "dorme" após 15 minutos sem uso: o primeiro
+> acesso pode levar até 1 minuto. Todos os dados são fictícios, e qualquer
+> visitante pode alterá-los.
+
 ## Funcionalidades
 
 - Login com JWT (rota protegida por guard e interceptor)
