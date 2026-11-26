@@ -8,8 +8,8 @@ tela, estão em [garage](https://github.com/MaycoolVinicius/garage).
 
 ## Demo
 
-- App: https://SUA-URL.vercel.app
-- Usuário: `demo` · Senha: `SENHA-DO-DEMO`
+- App: https://garage-web-zeta.vercel.app/login
+- Usuário: `demo` · Senha: `1234`
 
 > A API roda em plano gratuito e "dorme" após 15 minutos sem uso: o primeiro
 > acesso pode levar até 1 minuto. Todos os dados são fictícios, e qualquer
